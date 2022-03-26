@@ -4,23 +4,18 @@ func main() {
 
 }
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 /**
  * Definition for singly-linked list.
- * type ListNode struct {
+ * type listNode struct {
  *     Val int
- *     Next *ListNode
+ *     Next *listNode
  * }
  */
-func addTwoNumbers1(l1 *ListNode, l2 *ListNode) *ListNode {
+func addTwoNumbers1(l1 *listNode, l2 *listNode) *listNode {
 	l1 = ReverseChain(l1)
 	l2 = ReverseChain(l2)
 	cur1, cur2 := l1, l2
-	l3 := &ListNode{}
+	l3 := &listNode{}
 	cur := l3
 	carry := 0
 	for cur1 != nil || cur2 != nil {
@@ -35,24 +30,24 @@ func addTwoNumbers1(l1 *ListNode, l2 *ListNode) *ListNode {
 		}
 		remain := (sum + carry) % 10
 		carry = (sum + carry) / 10
-		cur.Next = &ListNode{
+		cur.Next = &listNode{
 			Val: remain,
 		}
 		cur = cur.Next
 	}
 	if carry == 1 {
-		cur.Next = &ListNode{
+		cur.Next = &listNode{
 			Val: 1,
 		}
 	}
 	return ReverseChain(l3.Next)
 }
 
-func ReverseChain(list *ListNode) *ListNode {
+func ReverseChain(list *listNode) *listNode {
 	if list == nil {
 		return nil
 	}
-	var pre *ListNode
+	var pre *listNode
 	cur := list
 	for cur != nil {
 		next := cur.Next
